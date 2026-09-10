@@ -1,0 +1,19 @@
+{
+  "name": "frs-barbearia",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/work-sans": "^5.3.0"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}

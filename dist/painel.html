@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0b0b" />
+    <meta
+      name="description"
+      content="Painel de gestão da FRS Barbearia."
+    />
+    <title>Painel do barbeiro | FRS Barbearia</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="module" crossorigin src="/assets/painel-BKZKbIgG.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/panel-state-DtkXXALN.js">
+    <link rel="stylesheet" crossorigin href="/assets/panel-state-CdiT8FLU.css">
+    <link rel="stylesheet" crossorigin href="/assets/painel-CLjxoF23.css">
+  </head>
+  <body>
+    <main class="login-shell" id="login-view">
+      <section class="login-visual">
+        <a class="panel-brand" href="/" aria-label="Voltar para o site"
+          ><span class="diamond">FRS</span
+          ><span><b>BARBEARIA</b></span></a
+        >
+        <div class="visual-copy">
+          <span class="kicker">GESTÃO · CONTROLE · PRESENÇA</span>
+          <h1>SEU NEGÓCIO.<br /><em>NO SEU CONTROLE.</em></h1>
+          <p>Organize sua agenda, serviços e promoções em um só lugar.</p>
+        </div>
+        <span class="visual-index">PAINEL DO BARBEIRO — 2026</span>
+      </section>
+      <section class="login-panel">
+        <a class="back-site" href="/">← Voltar ao site</a>
+        <form class="login-card" id="login-form">
+          <span class="login-number">01</span>
+          <p class="kicker">ACESSO RESTRITO</p>
+          <h2>BEM-VINDO<br />DE VOLTA.</h2>
+          <p class="login-subtitle">
+            Entre com seus dados para acessar o painel.
+          </p>
+          <label
+            >E-MAIL<input
+              name="email"
+              type="email"
+              value="frs@barbearia.com"
+              autocomplete="email"
+              required
+          /></label>
+          <label
+            >SENHA
+            <div class="password-wrap">
+              <input
+                name="password"
+                type="password"
+                value="frs123"
+                autocomplete="current-password"
+                required
+              /><button
+                type="button"
+                id="toggle-password"
+                aria-label="Mostrar senha"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                  <circle cx="12" cy="12" r="2.5" />
+                </svg>
+              </button></div
+          ></label>
+          <p class="login-error" role="alert" hidden>
+            E-mail ou senha incorretos.
+          </p>
+          <button class="primary-btn login-btn" type="submit">
+            ENTRAR NO PAINEL <span>→</span></button
+          ><small>Use frs@barbearia.com e frs123</small>
+        </form>
+      </section>
+    </main>
+
+    <div class="dashboard-shell" id="dashboard" hidden>
+      <aside class="sidebar">
+        <a class="panel-brand" href="/"
+          ><span class="diamond">FRS</span
+          ><span><b>BARBEARIA </b></span></a
+        >
+        <p class="nav-label">MENU PRINCIPAL</p>
+        <nav class="panel-nav">
+          <button class="active" data-view="overview">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" /></svg
+            ><span>Visão geral</span>
+          </button>
+          <button data-view="services">
+            <svg viewBox="0 0 24 24">
+              <circle cx="6" cy="7" r="3" />
+              <circle cx="6" cy="17" r="3" />
+              <path d="m8.7 8.4 11.3 8.1M8.7 15.6 20 7.5" /></svg
+            ><span>Cortes e serviços</span>
+          </button>
+          <button data-view="promotions">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 13 13 20 4 11V4h7l9 9Z" />
+              <circle cx="8.5" cy="8.5" r="1" /></svg
+            ><span>Promoções</span>
+          </button>
+          <button data-view="schedule">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M16 3v4M8 3v4M3 10h18" /></svg
+            ><span>Agenda</span>
+          </button>
+          <button data-view="waitlist">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M19 8v6M16 11h6" /></svg
+            ><span>Fila de espera</span>
+          </button>
+          <button data-view="blocks">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m6 6 12 12" /></svg
+            ><span>Bloqueios</span>
+          </button>
+        </nav>
+        <div class="barber-card">
+          <span class="avatar">RM</span>
+          <div>
+            <strong>Rafael Martins</strong><small>Barbeiro administrador</small>
+          </div>
+        </div>
+        <button class="logout-btn" id="logout">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M10 17l5-5-5-5M15 12H3M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"
+            /></svg
+          ><span>Sair do painel</span>
+        </button>
+      </aside>
+      <button class="sidebar-scrim" aria-label="Fechar menu"></button>
+      <main class="dashboard-main">
+        <header class="dashboard-header">
+          <button class="menu-toggle" aria-label="Abrir menu">
+            <span></span><span></span>
+          </button>
+          <div>
+            <span class="today-label">HOJE</span
+            ><strong id="today-text"></strong>
+          </div>
+          <button class="notification" aria-label="Notificações">
+            <span></span>2
+          </button>
+        </header>
+        <div class="view-content">
+          <section class="panel-view" data-panel="overview">
+            <div class="page-title">
+              <div>
+                <p class="kicker">VISÃO GERAL</p>
+                <h1>BOM DIA, RAFAEL.</h1>
+                <p>Tudo organizado para você cuidar do que importa.</p>
+              </div>
+              <button class="primary-btn" data-open-dialog="service-dialog">
+                ＋ ADICIONAR CORTE
+              </button>
+            </div>
+            <div class="stats-grid">
+              <article>
+                <small>AGENDAMENTOS HOJE</small
+                ><strong id="today-count">00</strong>
+                <p id="confirmed-count"></p>
+              </article>
+              <article>
+                <small>PRÓXIMO CLIENTE</small
+                ><strong class="stat-time" id="next-time">—</strong>
+                <p id="next-client"></p>
+              </article>
+              <article>
+                <small>FATURAMENTO PREVISTO</small
+                ><strong class="stat-money" id="today-revenue">R$ 0,00</strong>
+                <p>Baseado na agenda de hoje</p>
+              </article>
+            </div>
+            <div class="dashboard-grid">
+              <div class="panel-card appointments-card">
+                <div class="card-head">
+                  <div>
+                    <p class="kicker">AGENDA DO DIA</p>
+                    <h2>PRÓXIMOS ATENDIMENTOS</h2>
+                  </div>
+                  <button data-view="schedule">VER AGENDA →</button>
+                </div>
+                <div class="appointment-list" id="overview-appointments"></div>
+              </div>
+              <div class="panel-card quick-card">
+                <div class="card-head">
+                  <div>
+                    <p class="kicker">ATALHOS</p>
+                    <h2>AÇÕES RÁPIDAS</h2>
+                  </div>
+                </div>
+                <button data-open-dialog="service-dialog">
+                  <span>＋</span>
+                  <div>
+                    <strong>Adicionar novo corte</strong
+                    ><small>Cadastre serviço, duração e preço</small>
+                  </div>
+                  →</button
+                ><button data-view="promotions">
+                  <span>◇</span>
+                  <div>
+                    <strong>Criar promoção</strong
+                    ><small>Monte uma oferta por tempo limitado</small>
+                  </div>
+                  →</button
+                ><button data-view="blocks">
+                  <span>⊘</span>
+                  <div>
+                    <strong>Bloquear horário</strong
+                    ><small>Reserve uma pausa ou folga</small>
+                  </div>
+                  →
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel-view" data-panel="services" hidden>
+            <div class="page-title">
+              <div>
+                <p class="kicker">CATÁLOGO</p>
+                <h1>CORTES E SERVIÇOS</h1>
+                <p>Adicione, edite e ajuste seus preços quando precisar.</p>
+              </div>
+              <button class="primary-btn" data-open-dialog="service-dialog">
+                ＋ ADICIONAR CORTE
+              </button>
+            </div>
+            <section class="panel-card table-card">
+              <div class="table-toolbar">
+                <strong id="service-total"></strong
+                ><span id="service-active-total"></span>
+              </div>
+              <div class="responsive-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>SERVIÇO</th>
+                      <th>CATEGORIA</th>
+                      <th>DURAÇÃO</th>
+                      <th>PREÇO</th>
+                      <th>STATUS</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="services-body"></tbody>
+                </table>
+              </div>
+            </section>
+          </section>
+
+          <section class="panel-view" data-panel="promotions" hidden>
+            <div class="page-title">
+              <div>
+                <p class="kicker">OFERTAS</p>
+                <h1>PROMOÇÕES</h1>
+                <p>
+                  Crie campanhas para movimentar os horários mais tranquilos.
+                </p>
+              </div>
+              <button class="primary-btn" data-open-dialog="promotion-dialog">
+                ＋ CRIAR PROMOÇÃO
+              </button>
+            </div>
+            <div class="promo-grid" id="promotions-grid">
+              <button class="new-promo" data-open-dialog="promotion-dialog">
+                ＋<strong>Criar nova promoção</strong
+                ><span>Defina serviço, preço e período</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel-view" data-panel="schedule" hidden>
+            <div class="page-title">
+              <div>
+                <p class="kicker">ORGANIZAÇÃO</p>
+                <h1>AGENDA</h1>
+                <p>Visualize seus clientes e acompanhe o ritmo do dia.</p>
+              </div>
+              <button
+                class="primary-btn"
+                data-open-dialog="block-dialog"
+                data-use-selected-date
+              >
+                ＋ INDISPONIBILIZAR HORÁRIO
+              </button>
+            </div>
+            <section class="calendar-strip">
+              <span class="month-label" id="month-label"></span>
+              <div id="date-strip"></div>
+              <input
+                class="full-date-picker"
+                type="date"
+                id="date-picker"
+                aria-label="Escolher data"
+              />
+            </section>
+            <section class="panel-card schedule-card">
+              <div class="schedule-summary">
+                <div>
+                  <p class="kicker" id="schedule-date"></p>
+                  <h2 id="schedule-total"></h2>
+                </div>
+                <span id="schedule-minutes"></span>
+              </div>
+              <div class="appointment-list" id="schedule-appointments"></div>
+            </section>
+          </section>
+
+          <section class="panel-view" data-panel="waitlist" hidden>
+            <div class="page-title">
+              <div>
+                <p class="kicker">OPORTUNIDADES</p>
+                <h1>FILA DE ESPERA</h1>
+                <p>Veja quem deseja ser avisado quando surgir uma vaga.</p>
+              </div>
+            </div>
+            <section class="panel-card table-card">
+              <div class="table-toolbar">
+                <strong>Clientes aguardando</strong
+                ><span id="waitlist-total"></span>
+              </div>
+              <div class="responsive-table" id="waitlist-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>DATA</th>
+                      <th>HORÁRIO</th>
+                      <th>CLIENTE</th>
+                      <th>SERVIÇO</th>
+                      <th>AÇÃO</th>
+                    </tr>
+                  </thead>
+                  <tbody id="waitlist-body"></tbody>
+                </table>
+              </div>
+              <div class="empty-blocks" id="waitlist-empty">
+                <h2>FILA VAZIA</h2>
+                <p>Ninguém está aguardando uma vaga no momento.</p>
+              </div>
+            </section>
+          </section>
+
+          <section class="panel-view" data-panel="blocks" hidden>
+            <div class="page-title">
+              <div>
+                <p class="kicker">DISPONIBILIDADE</p>
+                <h1>BLOQUEIOS</h1>
+                <p>
+                  Reserve pausas, folgas e períodos em que não haverá
+                  atendimento.
+                </p>
+              </div>
+              <button class="primary-btn" data-open-dialog="block-dialog">
+                ＋ NOVO BLOQUEIO
+              </button>
+            </div>
+            <section class="panel-card table-card">
+              <div class="availability-info">
+                <strong>Proteção automática ativa</strong>
+                <p>
+                  Horários que coincidem com atendimentos agendados deixam de
+                  aceitar novas reservas automaticamente. Use os bloqueios
+                  abaixo apenas para pausas, folgas e imprevistos.
+                </p>
+              </div>
+              <div class="table-toolbar">
+                <strong>Horários indisponíveis</strong
+                ><span id="block-total"></span>
+              </div>
+              <div class="responsive-table" id="blocks-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>DATA</th>
+                      <th>PERÍODO</th>
+                      <th>MOTIVO</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="blocks-body"></tbody>
+                </table>
+              </div>
+              <div class="empty-blocks" id="blocks-empty">
+                <h2>NENHUM BLOQUEIO</h2>
+                <p>Sua agenda está totalmente disponível.</p>
+                <button class="secondary-btn" data-open-dialog="block-dialog">
+                  Criar primeiro bloqueio
+                </button>
+              </div>
+            </section>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <dialog class="modal" id="service-dialog">
+      <header>
+        <div>
+          <p class="kicker">PAINEL DO BARBEIRO</p>
+          <h2 id="service-dialog-title">NOVO CORTE</h2>
+          <p>Cadastre ou atualize uma opção do catálogo.</p>
+        </div>
+        <button
+          class="close-modal"
+          type="button"
+          data-close-dialog
+          aria-label="Fechar"
+        >
+          ×
+        </button>
+      </header>
+      <form class="modal-form" id="service-form">
+        <input type="hidden" name="id" /><label class="span-2"
+          >NOME DO SERVIÇO<input name="name" required /></label
+        ><label
+          >CATEGORIA<select name="category">
+            <option>Cabelo</option>
+            <option>Barba</option>
+            <option>Combo</option>
+            <option>Outros</option>
+          </select></label
+        ><label
+          >DURAÇÃO (MIN)<input
+            name="duration"
+            type="number"
+            min="5"
+            step="5"
+            value="45"
+            required /></label
+        ><label class="span-2"
+          >PREÇO (R$)<input
+            name="price"
+            type="number"
+            min="0"
+            step="0.01"
+            required
+        /></label>
+        <div class="modal-actions span-2">
+          <button type="button" class="secondary-btn" data-close-dialog>
+            Cancelar</button
+          ><button class="primary-btn" type="submit">
+            SALVAR ALTERAÇÕES →
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="modal" id="promotion-dialog">
+      <header>
+        <div>
+          <p class="kicker">PAINEL DO BARBEIRO</p>
+          <h2>PROMOÇÃO</h2>
+          <p>Defina uma oferta clara e um período de validade.</p>
+        </div>
+        <button
+          class="close-modal"
+          type="button"
+          data-close-dialog
+          aria-label="Fechar"
+        >
+          ×
+        </button>
+      </header>
+      <form class="modal-form" id="promotion-form">
+        <input type="hidden" name="id" /><label class="span-2"
+          >NOME DA PROMOÇÃO<input name="title" required /></label
+        ><label
+          >SERVIÇO<select name="service" id="promotion-service"></select></label
+        ><label
+          >PREÇO PROMOCIONAL<input
+            name="price"
+            type="number"
+            min="0"
+            step="0.01"
+            required /></label
+        ><label>INÍCIO<input name="start" type="date" required /></label
+        ><label>FIM<input name="end" type="date" required /></label>
+        <div class="modal-actions span-2">
+          <button type="button" class="secondary-btn" data-close-dialog>
+            Cancelar</button
+          ><button class="primary-btn" type="submit">SALVAR PROMOÇÃO →</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="modal" id="block-dialog">
+      <header>
+        <div>
+          <p class="kicker">PAINEL DO BARBEIRO</p>
+          <h2>NOVO BLOQUEIO</h2>
+          <p>Escolha uma data, um período e informe o motivo.</p>
+        </div>
+        <button
+          class="close-modal"
+          type="button"
+          data-close-dialog
+          aria-label="Fechar"
+        >
+          ×
+        </button>
+      </header>
+      <form class="modal-form" id="block-form">
+        <label class="span-2"
+          >DATA<input name="date" type="date" required /></label
+        ><label class="check-label span-2"
+          ><input name="allDay" type="checkbox" /><span></span>Bloquear o dia
+          inteiro</label
+        ><label class="time-field"
+          >INÍCIO<input
+            name="start"
+            type="time"
+            value="12:00"
+            required /></label
+        ><label class="time-field"
+          >FIM<input name="end" type="time" value="13:00" required /></label
+        ><label class="span-2">MOTIVO<input name="reason" required /></label>
+        <div class="modal-actions span-2">
+          <button type="button" class="secondary-btn" data-close-dialog>
+            Cancelar</button
+          ><button class="primary-btn" type="submit">BLOQUEAR HORÁRIO →</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal absence-modal" id="absence-dialog">
+      <header>
+        <div>
+          <p class="kicker">ATUALIZAR AGENDA</p>
+          <h2>CONFIRMAR AUSÊNCIA?</h2>
+          <p>O horário voltará a ficar disponível para novos agendamentos.</p>
+        </div>
+        <button
+          class="close-modal"
+          type="button"
+          data-close-dialog
+          aria-label="Fechar"
+        >
+          ×
+        </button>
+      </header>
+      <div class="absence-content">
+        <strong id="absence-client"></strong>
+        <p id="absence-details"></p>
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" data-close-dialog>
+            Cancelar</button
+          ><button type="button" class="absence-confirm" id="confirm-absence">
+            CONFIRMAR AUSÊNCIA
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <template id="appointment-template"
+      ><article>
+        <time></time><span class="client-avatar"></span>
+        <div><strong></strong><small></small></div>
+        <span class="status"></span
+        ><button class="appointment-remove" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="appointment-remove-label">Não compareceu</span>
+        </button></article
+    ></template>
+    <template id="service-template"
+      ><tr>
+        <td><strong data-field="name"></strong></td>
+        <td data-field="category"></td>
+        <td data-field="duration"></td>
+        <td><strong data-field="price"></strong></td>
+        <td>
+          <button class="toggle-status"><span></span><b></b></button>
+        </td>
+        <td><button class="edit-btn">Editar</button></td>
+      </tr></template
+    >
+    <template id="promotion-template"
+      ><article class="promo-card">
+        <div class="promo-ribbon"></div>
+        <small data-field="service"></small>
+        <h2 data-field="title"></h2>
+        <strong data-field="price"></strong>
+        <p data-field="period"></p>
+        <div>
+          <button class="toggle-promo"></button
+          ><button class="edit-promo">Editar</button>
+        </div>
+      </article></template
+    >
+    <template id="block-template"
+      ><tr>
+        <td><strong data-field="date"></strong></td>
+        <td data-field="period"></td>
+        <td data-field="reason"></td>
+        <td><button class="delete-btn">Remover</button></td>
+      </tr></template
+    >
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
