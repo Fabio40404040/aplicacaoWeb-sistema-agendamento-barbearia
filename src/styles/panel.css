@@ -152,7 +152,27 @@ svg {
 .login-subtitle {
   color: var(--muted);
   line-height: 1.6;
-  margin-bottom: 38px;
+  margin-bottom: 24px;
+}
+.demo-access {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border: 1px solid rgba(214, 168, 79, 0.45);
+  background: rgba(214, 168, 79, 0.08);
+  color: #c8c4bb;
+  font: 500 0.7rem/1.45 var(--mono);
+}
+.demo-access strong {
+  margin-bottom: 2px;
+  color: var(--gold);
+  font-size: 0.64rem;
+  letter-spacing: 0.11em;
+}
+.demo-access code {
+  color: var(--paper);
+  font: inherit;
 }
 .login-card label,
 .modal-form label {
@@ -516,6 +536,9 @@ svg {
   align-items: center;
   border-bottom: 1px solid var(--line);
 }
+.appointment-list {
+  container-type: inline-size;
+}
 .appointment-remove {
   min-height: 30px;
   padding: 6px 9px;
@@ -523,6 +546,7 @@ svg {
   align-items: center;
   gap: 6px;
   border: 1px solid #5e302d;
+  border-radius: 6px;
   background: transparent;
   color: #c9796d;
   font: 500 0.56rem var(--mono);
@@ -561,6 +585,17 @@ svg {
 .appointment-list small {
   color: #74716c;
   font-size: 0.65rem;
+}
+@container (max-width: 680px) {
+  .appointment-list article {
+    grid-template-columns: 48px 34px minmax(0, 1fr);
+    padding-block: 15px;
+  }
+  .appointment-list .status,
+  .appointment-list .appointment-remove {
+    grid-column: 3;
+    justify-self: start;
+  }
 }
 .status {
   display: inline-flex;

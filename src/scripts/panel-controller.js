@@ -1,4 +1,10 @@
-import { isoDate, panelState, saveState } from "./panel-state.js";
+import { apiRequest } from "./api.js";
+import {
+  isoDate,
+  loadPanelState,
+  panelState,
+  saveState,
+} from "./panel-state.js";
 
 const money = (value) =>
   Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -30,6 +36,17 @@ function showToast(message) {
   window.setTimeout(() => toast.classList.remove("show"), 2600);
 }
 
+async function persistState(key) {
+  try {
+    await saveState(key);
+    return true;
+  } catch {
+    await loadPanelState().catch(() => undefined);
+    showToast("Não foi possível salvar. Tente novamente.");
+    return false;
+  }
+}
+
 function removeAppointment(appointment) {
   appointmentPendingRemoval = appointment;
   document.querySelector("#absence-client").textContent = appointment.client;
@@ -38,12 +55,16 @@ function removeAppointment(appointment) {
   document.querySelector("#absence-dialog").showModal();
 }
 
-function confirmAppointmentRemoval() {
+async function confirmAppointmentRemoval() {
   if (!appointmentPendingRemoval) return;
   panelState.appointments = panelState.appointments.filter(
     (item) => item.id !== appointmentPendingRemoval.id,
   );
-  saveState("appointments");
+  if (!(await persistState("appointments"))) {
+    renderOverview();
+    renderSchedule();
+    return;
+  }
   document.querySelector("#absence-dialog").close();
   appointmentPendingRemoval = null;
   renderOverview();
@@ -136,9 +157,12 @@ function renderServices() {
     toggle.querySelector("b").textContent = service.active
       ? "Ativo"
       : "Inativo";
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener("click", async () => {
       service.active = !service.active;
-      saveState("services");
+      if (!(await persistState("services"))) {
+        renderServices();
+        return;
+      }
       renderServices();
       showToast("Status do serviço atualizado.");
     });
@@ -174,9 +198,9 @@ function renderPromotions() {
     );
     const toggle = card.querySelector(".toggle-promo");
     toggle.textContent = promotion.active ? "Pausar" : "Ativar";
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener("click", async () => {
       promotion.active = !promotion.active;
-      saveState("promotions");
+      await persistState("promotions");
       renderPromotions();
     });
     card
@@ -244,11 +268,14 @@ function renderBlocks() {
       block.allDay ? "Dia inteiro" : `${block.start} — ${block.end}`,
     );
     setField(row, "reason", block.reason);
-    row.querySelector(".delete-btn").addEventListener("click", () => {
+    row.querySelector(".delete-btn").addEventListener("click", async () => {
       panelState.blocks = panelState.blocks.filter(
         (item) => item.id !== block.id,
       );
-      saveState("blocks");
+      if (!(await persistState("blocks"))) {
+        renderBlocks();
+        return;
+      }
       renderBlocks();
       showToast("Bloqueio removido.");
     });
@@ -303,11 +330,14 @@ function renderWaitlist() {
     contact.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     remove.className = "delete-btn";
     remove.textContent = "Remover";
-    remove.addEventListener("click", () => {
+    remove.addEventListener("click", async () => {
       panelState.waitlist = panelState.waitlist.filter(
         (item) => item.id !== entry.id,
       );
-      saveState("waitlist");
+      if (!(await persistState("waitlist"))) {
+        renderWaitlist();
+        return;
+      }
       renderWaitlist();
       showToast("Cliente removido da fila de espera.");
     });
@@ -389,43 +419,81 @@ function showView(view) {
   if (view === "blocks") renderBlocks();
 }
 
-function initializeAuthentication() {
+function renderDashboard() {
+  renderServices();
+  renderPromotions();
+  renderBlocks();
+  renderWaitlist();
+  renderSchedule();
+  renderOverview();
+}
+
+async function initializeAuthentication() {
   const login = document.querySelector("#login-view");
   const dashboard = document.querySelector("#dashboard");
-  const showDashboard = () => {
+  const loginButton = document.querySelector(".login-btn");
+  const loginError = document.querySelector(".login-error");
+  const showDashboard = async () => {
+    await loadPanelState();
     login.hidden = true;
     dashboard.hidden = false;
+    renderDashboard();
     showView("overview");
   };
-  if (sessionStorage.getItem("frs-auth") === "true") showDashboard();
   document.querySelector("#toggle-password").addEventListener("click", () => {
     const password = document.querySelector("#login-form [name='password']");
     password.type = password.type === "password" ? "text" : "password";
   });
-  document.querySelector("#login-form").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const valid =
-      data.get("email") === "frs@barbearia.com" &&
-      data.get("password") === "frs123";
-    document.querySelector(".login-error").hidden = valid;
-    if (!valid) return;
-    sessionStorage.setItem("frs-auth", "true");
-    showDashboard();
-  });
-  document.querySelector("#logout").addEventListener("click", () => {
-    sessionStorage.removeItem("frs-auth");
+  document
+    .querySelector("#login-form")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      loginButton.disabled = true;
+      loginError.hidden = true;
+      try {
+        await apiRequest("/api/auth/login", {
+          method: "POST",
+          body: JSON.stringify({
+            email: data.get("email"),
+            password: data.get("password"),
+          }),
+        });
+        await showDashboard();
+      } catch (error) {
+        loginError.textContent = error.message || "Não foi possível entrar.";
+        loginError.hidden = false;
+      } finally {
+        loginButton.disabled = false;
+      }
+    });
+  document.querySelector("#logout").addEventListener("click", async () => {
+    await apiRequest("/api/auth/logout", { method: "POST" }).catch(
+      () => undefined,
+    );
     dashboard.hidden = true;
     login.hidden = false;
   });
+  try {
+    const session = await apiRequest("/api/auth/session");
+    if (session.authenticated) await showDashboard();
+  } catch {
+    loginError.textContent = "O painel está temporariamente indisponível.";
+    loginError.hidden = false;
+  }
 }
 
 function initializeNavigation() {
-  document
-    .querySelectorAll("[data-view]")
-    .forEach((button) =>
-      button.addEventListener("click", () => showView(button.dataset.view)),
-    );
+  document.querySelectorAll("[data-view]").forEach((button) =>
+    button.addEventListener("click", async () => {
+      try {
+        await loadPanelState();
+      } catch {
+        showToast("Não foi possível atualizar os dados do painel.");
+      }
+      showView(button.dataset.view);
+    }),
+  );
   document
     .querySelector(".menu-toggle")
     .addEventListener("click", () =>
@@ -476,7 +544,7 @@ function initializeDialogs() {
 function initializeForms() {
   document
     .querySelector("#service-form")
-    .addEventListener("submit", (event) => {
+    .addEventListener("submit", async (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const id = Number(data.get("id"));
@@ -490,7 +558,10 @@ function initializeForms() {
       if (service) Object.assign(service, values);
       else
         panelState.services.push({ id: Date.now(), ...values, active: true });
-      saveState("services");
+      if (!(await persistState("services"))) {
+        renderServices();
+        return;
+      }
       event.currentTarget.closest("dialog").close();
       renderServices();
       showView("services");
@@ -501,7 +572,7 @@ function initializeForms() {
 
   document
     .querySelector("#promotion-form")
-    .addEventListener("submit", (event) => {
+    .addEventListener("submit", async (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const id = Number(data.get("id"));
@@ -516,7 +587,10 @@ function initializeForms() {
       if (promotion) Object.assign(promotion, values);
       else
         panelState.promotions.push({ id: Date.now(), ...values, active: true });
-      saveState("promotions");
+      if (!(await persistState("promotions"))) {
+        renderPromotions();
+        return;
+      }
       event.currentTarget.closest("dialog").close();
       showView("promotions");
       showToast("Promoção salva com sucesso.");
@@ -529,7 +603,7 @@ function initializeForms() {
       input.required = !blockForm.elements.allDay.checked;
     });
   });
-  blockForm.addEventListener("submit", (event) => {
+  blockForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     panelState.blocks.push({
@@ -540,7 +614,10 @@ function initializeForms() {
       end: data.get("end"),
       reason: data.get("reason"),
     });
-    saveState("blocks");
+    if (!(await persistState("blocks"))) {
+      renderBlocks();
+      return;
+    }
     event.currentTarget.closest("dialog").close();
     showView("blocks");
     showToast("Horário bloqueado na agenda.");
@@ -562,29 +639,10 @@ function initializeForms() {
   });
 }
 
-export function initializePanel() {
+export async function initializePanel() {
   document.querySelector("#today-text").textContent = fullDate(isoDate());
-  initializeAuthentication();
   initializeNavigation();
   initializeDialogs();
   initializeForms();
-  renderServices();
-  renderPromotions();
-  renderBlocks();
-  renderWaitlist();
-  renderSchedule();
-  renderOverview();
-  window.addEventListener("storage", (event) => {
-    const stateKey = event.key?.replace("frs-", "");
-    if (!["appointments", "blocks", "waitlist"].includes(stateKey)) return;
-    try {
-      panelState[stateKey] = JSON.parse(event.newValue) || [];
-    } catch {
-      return;
-    }
-    renderOverview();
-    renderSchedule();
-    renderBlocks();
-    renderWaitlist();
-  });
+  await initializeAuthentication();
 }

@@ -10,10 +10,10 @@
     />
     <title>FRS Barbearia | Corte, barba e presença</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script type="module" crossorigin src="/assets/site-BM8m4rsS.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/panel-state-DtkXXALN.js">
-    <link rel="stylesheet" crossorigin href="/assets/panel-state-CdiT8FLU.css">
-    <link rel="stylesheet" crossorigin href="/assets/site-Cu7frbcv.css">
+    <script type="module" crossorigin src="/assets/site-B3-CbzGY.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/api-BihhKiaG.js">
+    <link rel="stylesheet" crossorigin href="/assets/api-CdiT8FLU.css">
+    <link rel="stylesheet" crossorigin href="/assets/site-p3biWcwu.css">
   </head>
   <body>
     <header class="site-header">
@@ -67,7 +67,7 @@
         </div>
         <a
           class="hero-instagram"
-          href="https://www.instagram.com/frsbarbearia.iguatu/"
+          href="https://www.instagram.com"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Acompanhe a FRS Barbearia no Instagram"
@@ -261,7 +261,7 @@
                 <option value="Sobrancelha">Sobrancelha — R$ 18,00</option>
               </select></label
             >
-            <div class="form-row">
+            <div class="form-row form-row-client">
               <label
                 >Qual dia?<input
                   id="date"
@@ -275,6 +275,18 @@
                   type="text"
                   placeholder="Como podemos te chamar?"
                   autocomplete="name"
+                  required
+              /></label
+              ><label
+                >Seu WhatsApp<input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="(88) 99999-9999"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  minlength="10"
+                  maxlength="16"
                   required
               /></label>
             </div>
@@ -314,15 +326,15 @@
               <input id="time" name="time" type="hidden" required />
               <input id="booking-mode" name="bookingMode" type="hidden" value="booking" />
               <p class="availability-legend" id="availability-legend" hidden>
-                <strong>× Agendado:</strong> há um cliente nesse horário e ele
-                não pode ser selecionado.
+                <strong>Horário agendado:</strong> selecione-o para entrar na
+                fila de espera.
               </p>
               <p class="booking-error" id="booking-error" role="alert" hidden>
                 Esse horário acabou de ser agendado. Escolha outro horário.
               </p>
             </fieldset>
             <p class="booking-error" id="form-validation-error" role="alert" hidden>
-              Preencha seu nome para concluir o agendamento.
+              Preencha seu nome e WhatsApp para concluir o agendamento.
             </p>
             <button class="submit-btn" id="booking-submit" type="submit">
               Solicitar agendamento <span>→</span>
@@ -374,7 +386,7 @@
             <small>REDES SOCIAIS</small>
             <div class="social-links">
               <a
-                href="https://www.instagram.com/frsbarbearia.iguatu/"
+                href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram da FRS Barbearia"
@@ -387,7 +399,7 @@
                 <span>Instagram</span>
               </a>
               <a
-                href="https://www.facebook.com/frsbarbearia.iguatu/"
+                href="https://www.facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook da FRS Barbearia"
@@ -398,7 +410,7 @@
                 <span>Facebook</span>
               </a>
               <a
-                href="https://www.tiktok.com/@frsbarbearia.iguatu"
+                href="https://www.tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok da FRS Barbearia"

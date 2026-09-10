@@ -4,9 +4,14 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open",
+    "dev": "node scripts/dev.js",
+    "dev:server": "npm run build && wrangler d1 migrations apply DB --local && wrangler dev --live-reload",
+    "dev:frontend": "vite --open",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@fontsource/anton": "^5.3.0",
@@ -14,6 +19,7 @@
     "@fontsource/work-sans": "^5.3.0"
   },
   "devDependencies": {
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "wrangler": "^4.37.1"
   }
 }

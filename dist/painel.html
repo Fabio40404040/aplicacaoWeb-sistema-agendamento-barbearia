@@ -10,10 +10,10 @@
     />
     <title>Painel do barbeiro | FRS Barbearia</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script type="module" crossorigin src="/assets/painel-BKZKbIgG.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/panel-state-DtkXXALN.js">
-    <link rel="stylesheet" crossorigin href="/assets/panel-state-CdiT8FLU.css">
-    <link rel="stylesheet" crossorigin href="/assets/painel-CLjxoF23.css">
+    <script type="module" crossorigin src="/assets/painel-ClzFeBwd.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/api-BihhKiaG.js">
+    <link rel="stylesheet" crossorigin href="/assets/api-CdiT8FLU.css">
+    <link rel="stylesheet" crossorigin href="/assets/painel-EE3mTHha.css">
   </head>
   <body>
     <main class="login-shell" id="login-view">
@@ -33,16 +33,21 @@
         <a class="back-site" href="/">← Voltar ao site</a>
         <form class="login-card" id="login-form">
           <span class="login-number">01</span>
-          <p class="kicker">ACESSO RESTRITO</p>
+          <p class="kicker">ACESSO DEMONSTRATIVO</p>
           <h2>BEM-VINDO<br />DE VOLTA.</h2>
           <p class="login-subtitle">
             Entre com seus dados para acessar o painel.
           </p>
+          <aside class="demo-access" aria-label="Credenciais de demonstração">
+            <strong>ACESSO DE DEMONSTRAÇÃO</strong>
+            <span>E-mail: <code>admin@frsbarbearia.com</code></span>
+            <span>Senha: <code>frsbarbearia</code></span>
+          </aside>
           <label
             >E-MAIL<input
               name="email"
               type="email"
-              value="frs@barbearia.com"
+              value="admin@frsbarbearia.com"
               autocomplete="email"
               required
           /></label>
@@ -52,7 +57,7 @@
               <input
                 name="password"
                 type="password"
-                value="frs123"
+                value="frsbarbearia"
                 autocomplete="current-password"
                 required
               /><button
@@ -71,7 +76,8 @@
           </p>
           <button class="primary-btn login-btn" type="submit">
             ENTRAR NO PAINEL <span>→</span></button
-          ><small>Use frs@barbearia.com e frs123</small>
+          >
+          <small>Ambiente demonstrativo para apresentação do sistema.</small>
         </form>
       </section>
     </main>
@@ -126,9 +132,9 @@
           </button>
         </nav>
         <div class="barber-card">
-          <span class="avatar">RM</span>
+          <span class="avatar">FR</span>
           <div>
-            <strong>Rafael Martins</strong><small>Barbeiro administrador</small>
+            <strong>Fábio Ribeiro</strong><small>Barbeiro administrador</small>
           </div>
         </div>
         <button class="logout-btn" id="logout">
@@ -136,7 +142,7 @@
             <path
               d="M10 17l5-5-5-5M15 12H3M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"
             /></svg
-          ><span>Sair do painel</span>
+          ><span class="logout-exit">Sair do painel</span>
         </button>
       </aside>
       <button class="sidebar-scrim" aria-label="Fechar menu"></button>
@@ -158,7 +164,7 @@
             <div class="page-title">
               <div>
                 <p class="kicker">VISÃO GERAL</p>
-                <h1>BOM DIA, RAFAEL.</h1>
+                <h1>BOM DIA, FÁBIO.</h1>
                 <p>Tudo organizado para você cuidar do que importa.</p>
               </div>
               <button class="primary-btn" data-open-dialog="service-dialog">

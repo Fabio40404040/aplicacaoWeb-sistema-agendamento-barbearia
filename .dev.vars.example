@@ -1,0 +1,2 @@
+ADMIN_PASSWORD="frsbarbearia"
+SESSION_SECRET="use-uma-frase-aleatoria-longa-com-pelo-menos-32-caracteres"

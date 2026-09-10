@@ -7,4 +7,4 @@ import "@fontsource/ibm-plex-mono/500.css";
 import "./styles/panel.css";
 import { initializePanel } from "./scripts/panel-controller.js";
 
-initializePanel();
+void initializePanel();

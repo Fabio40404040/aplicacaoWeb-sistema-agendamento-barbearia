@@ -671,6 +671,9 @@ fieldset legend {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
+.form-row-client {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .booking-form fieldset {
   border: 0;
 }
@@ -746,13 +749,17 @@ fieldset legend {
 }
 .time-btn.is-occupied,
 .time-btn.is-occupied:hover,
-.time-btn.is-occupied:disabled,
-.time-btn.is-occupied:disabled:hover {
+.time-btn.is-occupied.is-selected {
   color: #f5f1e8;
   border-color: #d95850;
   background: #2b1514;
-  cursor: not-allowed;
+  cursor: pointer;
   opacity: 1;
+}
+.time-btn.is-occupied:hover,
+.time-btn.is-occupied.is-selected {
+  border-color: var(--gold);
+  background: #4a211e;
 }
 .time-btn.is-occupied small {
   display: block;

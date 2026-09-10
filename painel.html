@@ -29,16 +29,21 @@
         <a class="back-site" href="/">← Voltar ao site</a>
         <form class="login-card" id="login-form">
           <span class="login-number">01</span>
-          <p class="kicker">ACESSO RESTRITO</p>
+          <p class="kicker">ACESSO DEMONSTRATIVO</p>
           <h2>BEM-VINDO<br />DE VOLTA.</h2>
           <p class="login-subtitle">
             Entre com seus dados para acessar o painel.
           </p>
+          <aside class="demo-access" aria-label="Credenciais de demonstração">
+            <strong>ACESSO DE DEMONSTRAÇÃO</strong>
+            <span>E-mail: <code>admin@frsbarbearia.com</code></span>
+            <span>Senha: <code>frsbarbearia</code></span>
+          </aside>
           <label
             >E-MAIL<input
               name="email"
               type="email"
-              value="frs@barbearia.com"
+              value="admin@frsbarbearia.com"
               autocomplete="email"
               required
           /></label>
@@ -48,7 +53,7 @@
               <input
                 name="password"
                 type="password"
-                value="frs123"
+                value="frsbarbearia"
                 autocomplete="current-password"
                 required
               /><button
@@ -68,8 +73,7 @@
           <button class="primary-btn login-btn" type="submit">
             ENTRAR NO PAINEL <span>→</span></button
           >
-          <small style="color: rgb(245, 241, 6);">Email: frs@barbearia.com</small>
-          <small style="color: rgb(245, 241, 6);">Senha: frs123</small>
+          <small>Ambiente demonstrativo para apresentação do sistema.</small>
         </form>
       </section>
     </main>
@@ -156,7 +160,7 @@
             <div class="page-title">
               <div>
                 <p class="kicker">VISÃO GERAL</p>
-                <h1>BOM DIA, RAFAEL.</h1>
+                <h1>BOM DIA, FÁBIO.</h1>
                 <p>Tudo organizado para você cuidar do que importa.</p>
               </div>
               <button class="primary-btn" data-open-dialog="service-dialog">
