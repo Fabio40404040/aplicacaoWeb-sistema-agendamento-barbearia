@@ -1,23 +1,23 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "frs-barbearia",
-  "main": "backend/worker/index.js",
-  "compatibility_date": "2026-09-10",
-  "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "run_worker_first": true,
-    "not_found_handling": "404-page"
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "frs-barbearia-db",
-      "database_id": "00000000-0000-0000-0000-000000000000",
-      "migrations_dir": "backend/migrations"
-    }
-  ],
-  "vars": {
-    "ADMIN_EMAIL": "admin@frsbarbearia.com"
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "frs-barbearia",
+	"main": "backend/worker/index.js",
+	"compatibility_date": "2026-09-10",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"run_worker_first": true,
+		"not_found_handling": "404-page"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "frs-barbearia-db",
+			"database_id": "5b6a9f2d-fb44-4b7f-be81-8016f8c729da",
+			"migrations_dir": "backend/migrations"
+		}
+	],
+	"vars": {
+		"ADMIN_EMAIL": "admin@frsbarbearia.com"
+	}
 }
