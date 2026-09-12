@@ -10,6 +10,11 @@
     />
     <title>FRS Barbearia | Corte, barba e presença</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/pwa-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FRS Barbearia" />
   </head>
   <body>
     <header class="site-header">
@@ -422,6 +427,12 @@
             © 2026 FRS Barbearia. Todos os direitos reservados.
           </p>
         </footer>
+        <button class="pwa-install" type="button" data-install-app hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v12m0 0 5-5m-5 5-5-5M5 19h14" />
+          </svg>
+          Instalar aplicativo
+        </button>
         <a
           class="whatsapp-float"
           href="https://wa.me/5585999999999"

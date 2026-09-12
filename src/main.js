@@ -9,8 +9,10 @@ import "@fontsource/ibm-plex-mono/500.css";
 
 import { initializeBooking } from "./scripts/booking.js";
 import { initializeHeaderMenu } from "./scripts/header-menu.js";
+import { initializePwa } from "./scripts/pwa.js";
 import { initializeServiceSelection } from "./scripts/service-selection.js";
 
 initializeHeaderMenu();
 initializeServiceSelection();
 initializeBooking();
+initializePwa();
