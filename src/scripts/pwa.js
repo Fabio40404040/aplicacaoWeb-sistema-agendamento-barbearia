@@ -36,7 +36,7 @@ export function initializePwa() {
 
     if (isIos()) {
       window.alert(
-        "No Safari, toque em Compartilhar e depois em ‘Adicionar à Tela de Início’.",
+        "No iPhone, abra este site no Safari ou Chrome. Toque em Compartilhar → Adicionar à Tela de Início → Adicionar. No Safari, mantenha ‘Abrir como App da Web’ ativado. Se você abriu o link dentro de outro app, copie o endereço e abra-o em um desses navegadores.",
       );
     }
   });
