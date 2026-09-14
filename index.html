@@ -35,17 +35,29 @@
         </nav>
         <a class="header-cta" href="#agendar">Agendar horário</a>
       </div>
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Abrir menu"
-        aria-controls="header-menu"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-mobile-actions">
+        <button
+          class="pwa-install"
+          type="button"
+          data-install-app
+          aria-label="Adicionar à Tela de Início"
+          title="Adicionar à Tela de Início"
+          hidden
+        >
+          <img src="/install-phone.png" width="68" height="68" alt="" />
+        </button>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="header-menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </header>
     <main>
       <section class="hero" id="inicio">
@@ -427,12 +439,6 @@
             © 2026 FRS Barbearia. Todos os direitos reservados.
           </p>
         </footer>
-        <button class="pwa-install" type="button" data-install-app hidden>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 3v12m0 0 5-5m-5 5-5-5M5 19h14" />
-          </svg>
-          Instalar aplicativo
-        </button>
         <a
           class="whatsapp-float"
           href="https://wa.me/5585999999999"
