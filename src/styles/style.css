@@ -93,6 +93,7 @@ nav a {
 }
 .header-cta {
   border: 1px solid var(--gold);
+  border-radius: 6px;
   color: var(--gold);
   padding: 12px 19px;
   text-decoration: none;
@@ -108,6 +109,7 @@ nav a {
   place-content: center;
   gap: 6px;
   border: 1px solid rgba(214, 168, 79, 0.55);
+  border-radius: 6px;
   background: transparent;
   color: var(--gold);
 }
