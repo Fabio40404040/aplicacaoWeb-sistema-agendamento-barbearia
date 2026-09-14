@@ -15,9 +15,13 @@ export function initializePwa() {
   }
 
   const installButton = document.querySelector("[data-install-app]");
-  if (!installButton || isStandalone()) return;
+  if (!installButton) return;
 
-  if (isIos()) installButton.hidden = false;
+  installButton.hidden = false;
+  if (isStandalone()) {
+    installButton.setAttribute("aria-label", "Aplicativo já instalado");
+    installButton.title = "Aplicativo já instalado";
+  }
 
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
@@ -26,11 +30,15 @@ export function initializePwa() {
   });
 
   installButton.addEventListener("click", async () => {
+    if (isStandalone()) {
+      window.alert("Este aplicativo já está na tela inicial do seu celular.");
+      return;
+    }
+
     if (installPrompt) {
       installPrompt.prompt();
       await installPrompt.userChoice;
       installPrompt = null;
-      installButton.hidden = true;
       return;
     }
 
@@ -38,11 +46,17 @@ export function initializePwa() {
       window.alert(
         "No iPhone, abra este site no Safari ou Chrome. Toque em Compartilhar → Adicionar à Tela de Início → Adicionar. No Safari, mantenha ‘Abrir como App da Web’ ativado. Se você abriu o link dentro de outro app, copie o endereço e abra-o em um desses navegadores.",
       );
+      return;
     }
+
+    window.alert(
+      "Abra o menu do navegador e escolha ‘Instalar aplicativo’ ou ‘Adicionar à tela inicial’.",
+    );
   });
 
   window.addEventListener("appinstalled", () => {
     installPrompt = null;
-    installButton.hidden = true;
+    installButton.setAttribute("aria-label", "Aplicativo já instalado");
+    installButton.title = "Aplicativo já instalado";
   });
 }
